@@ -26,4 +26,18 @@ export class CoursesService {
             shareReplay()
         );
     }
+
+    searchLessons(search: string){
+        return this.http.get<Course[]>("api/lessons",
+        {
+            params: {
+                filter: search,
+                pageSize: "100"
+            }
+        })
+        .pipe(
+            map(res => res["payload"]),
+            shareReplay()
+            );
+    }
 }
