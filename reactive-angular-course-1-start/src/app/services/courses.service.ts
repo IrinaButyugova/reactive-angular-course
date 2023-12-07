@@ -47,4 +47,18 @@ export class CoursesService {
             shareReplay()
             ); 
     }
+
+    loadCourseLessons(courseId: number) {
+        return this.http.get<Course[]>("api/lessons",
+        {
+            params: {
+                pageSize: "1000",
+                courseId: courseId.toString()
+            }
+        })
+        .pipe(
+            map(res => res["payload"]),
+            shareReplay()
+            );
+    }
 }
