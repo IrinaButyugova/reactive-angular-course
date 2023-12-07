@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, ChangeDetectionStrategy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Course} from '../model/course';
 import {
@@ -15,7 +15,7 @@ import {
 } from 'rxjs/operators';
 import {merge, fromEvent, Observable, concat, throwError, combineLatest} from 'rxjs';
 import {Lesson} from '../model/lesson';
-import {CoursesService} from '../services/courses.service' 
+import {CoursesService} from '../services/courses.service';
 
 interface CourseData{
   course: Course;
@@ -25,7 +25,8 @@ interface CourseData{
 @Component({
   selector: 'course',
   templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css']
+  styleUrls: ['./course.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseComponent implements OnInit {
 
