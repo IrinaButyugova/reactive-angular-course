@@ -40,4 +40,11 @@ export class CoursesService {
             shareReplay()
             );
     }
+
+    loadCourseById(courseId: number){
+        return this.http.get<Course>(`api/courses/${courseId}`)
+        .pipe(
+            shareReplay()
+            ); 
+    }
 }
