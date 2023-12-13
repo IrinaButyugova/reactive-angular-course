@@ -7,12 +7,10 @@ import { CoursesService } from '../services/courses.service';
 import {Observable} from 'rxjs';
 
 export interface CourseStateModel{
-    readonly loaded: boolean;
     readonly courses: Course[];
 }
 
 export const initialCourseState: CourseStateModel = {
-    loaded: false,
     courses: []
   };
 
@@ -22,11 +20,7 @@ export const initialCourseState: CourseStateModel = {
   })
   @Injectable()
     export class CourseState implements NgxsOnInit {
-    @Selector()
-    static loaded(state: CourseStateModel): boolean {
-    return state.loaded;
-  }
-
+   
   @Selector()
   static courses(state: CourseStateModel) {
     return state.courses;
