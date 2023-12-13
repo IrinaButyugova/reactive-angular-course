@@ -36,6 +36,8 @@ import { LoadingComponent } from './loading/loading.component';
 import { CoursesCardListComponent } from './courses-card-list/courses-card-list.component';
 import { LoadingService } from './services/loading.service';
 import { MessageService } from './messages/message.service';
+import { NgxsModule } from '@ngxs/store';
+import { CourseState } from './feature/feature.state';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,10 @@ import { MessageService } from './messages/message.service';
     MatSelectModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxsModule.forRoot([CourseState], {
+      developmentMode: true
+    })
   ],
   providers: [
     LoadingService,

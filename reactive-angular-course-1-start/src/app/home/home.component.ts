@@ -3,6 +3,8 @@ import {Course, sortCoursesBySeqNo} from '../model/course';
 import {Observable, throwError} from 'rxjs';
 import {catchError, finalize, map} from 'rxjs/operators';
 import { CoursesStore } from '../services/courses.store';
+import { CourseState } from '../feature/feature.state'
+import { Action, createSelector, NgxsOnInit, Selector, State, StateContext, Select } from '@ngxs/store';
 
 
 @Component({
@@ -11,26 +13,15 @@ import { CoursesStore } from '../services/courses.store';
   styleUrls: ['./home.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
+  @Select(CourseState.coursesByCategory("BEGINNER"))
   beginnerCourses$: Observable<Course[]>;
-
+  @Select(CourseState.coursesByCategory("ADVANCED"))
   advancedCourses$: Observable<Course[]>;
 
-
-  constructor(private coursesStore: CoursesStore) {
-
-  }
-
-  ngOnInit() {
-    this.reloadCourses();
-  }
-
   reloadCourses(){
-    this.beginnerCourses$ = this.coursesStore.filterByCategory("BEGINNER");
-    this.advancedCourses$ = this.coursesStore.filterByCategory("ADVANCED");
   }
-
 }
 
 
