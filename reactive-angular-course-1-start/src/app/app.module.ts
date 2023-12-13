@@ -37,7 +37,7 @@ import { CoursesCardListComponent } from './courses-card-list/courses-card-list.
 import { LoadingService } from './services/loading.service';
 import { MessageService } from './messages/message.service';
 import { NgxsModule } from '@ngxs/store';
-import { CourseState } from './feature/feature.state';
+import { CourseState } from './feature/courses.state';
 
 @NgModule({
   declarations: [

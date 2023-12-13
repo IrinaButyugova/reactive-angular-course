@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import {throwError} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
-import * as CourseActions from '../feature/feature.actions';
+import * as CourseActions from '../feature/courses.actions';
 
 @Component({
     selector: 'course-dialog',

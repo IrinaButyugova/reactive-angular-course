@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, createSelector, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import { catchError, map } from 'rxjs/operators';
 import {Course, sortCoursesBySeqNo} from '../model/course';
-import * as CourseActions from './feature.actions';
+import * as CourseActions from './courses.actions';
 import { CoursesService } from '../services/courses.service';
 import {Observable} from 'rxjs';
 

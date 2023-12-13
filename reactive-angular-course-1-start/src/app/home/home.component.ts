@@ -3,7 +3,7 @@ import {Course, sortCoursesBySeqNo} from '../model/course';
 import {Observable, throwError} from 'rxjs';
 import {catchError, finalize, map} from 'rxjs/operators';
 import { CoursesStore } from '../services/courses.store';
-import { CourseState } from '../feature/feature.state'
+import { CourseState } from '../feature/courses.state'
 import { Action, createSelector, NgxsOnInit, Selector, State, StateContext, Select } from '@ngxs/store';
 
 
