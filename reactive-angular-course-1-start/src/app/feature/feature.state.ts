@@ -62,4 +62,29 @@ export const initialCourseState: CourseStateModel = {
         catchError((error: unknown) => ctx.dispatch(new CourseActions.LoadFailure(error)))
     )
   }
+
+  @Action(CourseActions.Save)
+  save(ctx: StateContext<CourseStateModel>, {courseId, changes}: CourseActions.Save){
+    return this.coursesService.saveCourse(courseId, changes)
+    .pipe(
+      map(() => {
+        const state = ctx.getState();
+        const index = state.courses.findIndex(course => course.id == courseId);
+        const newCourse : Course = {
+            ...state.courses[index],
+            ...changes
+        };
+        const newCourses : Course[] = state.courses.slice(0);
+        newCourses[index] = newCourse;
+
+        ctx.setState({
+          ...state,
+          courses: newCourses
+        });
+
+        return ctx.dispatch(new CourseActions.SaveSuccess)
+      }),
+      catchError((error: unknown) => ctx.dispatch(new CourseActions.SaveFailure(error)))
+    )
+  }
 }

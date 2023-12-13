@@ -15,3 +15,19 @@ import {Course} from '../model/course';
   
     constructor(public readonly error: unknown) {}
   }
+
+  export class Save {
+    static readonly type = '[Courses] Save';
+
+    constructor(public courseId: string, public changes: Partial<Course>) {}
+  }
+
+  export class SaveSuccess {
+    static readonly type = '[Courses] Save Success';
+  }
+
+  export class SaveFailure {
+    static readonly type = '[Post] Save Failure';
+  
+    constructor(public readonly error: unknown) {}
+  }

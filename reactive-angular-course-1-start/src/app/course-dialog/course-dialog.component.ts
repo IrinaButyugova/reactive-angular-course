@@ -3,9 +3,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import {Course} from "../model/course";
 import {FormBuilder, Validators, FormGroup} from "@angular/forms";
 import * as moment from 'moment';
-import { CoursesStore } from '../services/courses.store';
 import {throwError} from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Store } from '@ngxs/store';
+import * as CourseActions from '../feature/feature.actions';
 
 @Component({
     selector: 'course-dialog',
@@ -22,7 +23,7 @@ export class CourseDialogComponent implements AfterViewInit {
         private fb: FormBuilder,
         private dialogRef: MatDialogRef<CourseDialogComponent>,
         @Inject(MAT_DIALOG_DATA) course:Course,
-        private coursesStore: CoursesStore) {
+        private readonly store: Store) {
 
         this.course = course;
 
@@ -42,8 +43,7 @@ export class CourseDialogComponent implements AfterViewInit {
     save() {
 
       const changes = this.form.value;
-      this.coursesStore.saveCourse(this.course.id, changes)
-      .subscribe();
+      this.store.dispatch(new CourseActions.Save(this.course.id, changes));
           
       this.dialogRef.close(changes);
     }
